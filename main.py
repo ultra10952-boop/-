@@ -26,9 +26,13 @@ def add_book(books):
         print('Оценка введена неправильно')
         return
     date=input('Дату (дд/мм/гггг): ')
+    for book in books:
+        if author==book['author']and name==book['name']:
+            print('\nДанная книга уже существует')
+            return
     books.append({'author':author,'name':name,'rating':rating,'date':date})
     save_books(books)
-    print('Книга добавлена в список')
+    print('\nКнига добавлена в список')
 
 def main():
     while True:
