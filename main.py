@@ -16,7 +16,6 @@ def list_for_deletion(books):
     for book in books:
         index+=1
         print(f'{index}: {book['author']} "{book['name']}", Оценка: {book['rating']}, Дата: {book['date']}')
-
 def delete_book(books):
     if len(books)>0:
         list_for_deletion(books)
