@@ -1,4 +1,5 @@
 import json
+
 def load_books():
     with open('books.json','r',encoding='utf-8') as f:
         try:
@@ -9,6 +10,30 @@ def load_books():
 def save_books(books):
     with open('books.json','w',encoding='utf-8') as f:
         json.dump(books,f,ensure_ascii=False,indent=2)
+
+def list_for_deletion(books):
+    index=0
+    for book in books:
+        index+=1
+        print(f'{index}: {book['author']} "{book['name']}", Оценка: {book['rating']}, Дата: {book['date']}')
+        
+def delete_book(books):
+    if len(books)>0:
+        list_for_deletion(books)
+        index=input('Введите индекс книги: ')
+        try:
+            index=int(index)
+            if index>len(books):
+                print('\nКниги с данным индексом не существует')
+                return
+        except:
+            print('\nИндекс введен неправильно')
+            return
+        books.pop(index-1)
+        save_books(books)
+        print('\nКнига удалена из списка')
+    else:
+        print('\nСписок пуст')
 
 def list_books(books):
     if len(books)>0:
@@ -80,7 +105,7 @@ def main():
         elif choice=='4':
             stats_by_author(books)
         elif choice=='5':
-            pass
+            delete_book(books)
         elif choice=='6':
             break
 
