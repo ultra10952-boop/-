@@ -1,6 +1,4 @@
 import json
-from datetime import datetime
-
 def load_books():
     with open('books.json','r',encoding='utf-8') as f:
         try:
